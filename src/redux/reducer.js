@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_AUTHOR":
       const newAuthor = {
-        id: this.state.newAuthorId,
+        id: state.newAuthorId,
         first_name: "Author",
         last_name: "McAuthorFace",
         imageUrl:
@@ -24,12 +24,19 @@ const reducer = (state = initialState, action) => {
           }
         ]
       }
+
       return {
         ...state,
         authors: state.authors.concat(newAuthor),
         newAuthorId: state.newAuthorId + 1
 
       }
+    case "DELETE_AUTHOR":
+      return {
+        ...state,
+        authors: state.authors.filter(author => author.id !== action.payload.id)
+      }
+
 
     default:
       return state;

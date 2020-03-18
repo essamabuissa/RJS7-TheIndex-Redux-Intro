@@ -1,4 +1,7 @@
 import React from "react";
+import { addAuthor } from "./redux/actionCreators";
+import { connect } from "react-redux";
+
 
 const Sidebar = props => {
   return (
@@ -20,4 +23,12 @@ const Sidebar = props => {
   );
 };
 
-export default Sidebar;
+const mapDispatchToProps = dispatch => {
+  return {
+    addAuthor: () => dispatch(addAuthor())
+
+  }
+
+}
+
+export default connect(null, mapDispatchToProps)(Sidebar);
